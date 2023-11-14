@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Box, Typography } from "@mui/material";
 import { PieChart } from "@mui/x-charts";
 import { useEffect } from "react";
+import { data } from "../data";
 
 let count = {};
 
@@ -18,25 +19,14 @@ const BehavioralContainer = styled(Box)({
 const BehavioralAnalytics = () => {
   useEffect(() => {
     count = {};
-    (async () => {
-      await fetch("src/data.json", {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          data["Behavioral Analytics"].forEach((element) => {
-            if (count[element]) {
-              count[element] += 1;
-            } else {
-              count[element] = 1;
-            }
-            console.log(count);
-          });
-        });
-    })();
+    data["Behavioral Analytics"].forEach((element) => {
+      if (count[element]) {
+        count[element] += 1;
+      } else {
+        count[element] = 1;
+      }
+      console.log(count);
+    });
   }, []);
 
   return (

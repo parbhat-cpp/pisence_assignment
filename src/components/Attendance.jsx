@@ -2,6 +2,7 @@ import AttendanceCard from "./AttendanceCard";
 import { Box, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
+import { data } from "../data";
 
 const AttendanceWrapper = styled(Box)({
   background: "#d9d9d9",
@@ -15,18 +16,7 @@ const Attendance = () => {
   const [attendance, setAttendance] = useState({});
 
   useEffect(() => {
-    (async () => {
-      await fetch("src/data.json", {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setAttendance(data.ATTENDANCE);
-        });
-    })();
+    setAttendance(data.ATTENDANCE);
   }, []);
   return (
     <>

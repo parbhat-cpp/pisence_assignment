@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { capitalStr } from "../util";
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
+import { data } from "../data";
 
 const HomeworkContainer = styled(Box)({
   textAlign: "center",
@@ -15,18 +16,7 @@ const Homework = () => {
   const [homework, setHomework] = useState([]);
 
   useEffect(() => {
-    (async () => {
-      await fetch("src/data.json", {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setHomework(data.homework);
-        });
-    })();
+    setHomework(data.homework);
   }, []);
 
   return (
